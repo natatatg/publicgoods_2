@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Goods Coding Challenge #2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="popup" id="popup-toggle">
+        <div class="container">
+            <div class="left-container">
+                <img class="img" src="./cat-img.jpeg">
+            </div>
+            <div class="right-container">
+                <div class="close">
+                    <span onclick="closePopup()">X</span>
+                </div>
+                <div class="facts">
+                    <h2>CAT FACTS</h2>
+                    <ul id="cat-facts-list"></ul>
+
+                </div>
+                <div>
+                    <button class="btn" onclick="getCatFacts()">get facts</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let catFactsArr = [];
+
+
+
+    function closePopup() {
+        let popup = document.getElementById("popup-toggle");
+        popup.classList.toggle("popdown");
+        popup.classList.toggle("show");
+      
+        popup.addEventListener("animationend", removePopup);
+        popup.addEventListener("webkitAnimationend", removePopup);
+    };
+
+    function removePopup() {
+        let popup = document.getElementById("popup-toggle");
+        popup.style.display="none";
+    }
+
+    function getCatFacts() {
+        fetch('https://cat-fact.herokuapp.com/facts', {
+            method: 'GET'
+        }).then(response => response.json().then(data => ({
+            data: data,
+            status: response.status
+        })
+        ))
+            .then(res => {
+                //console.log(res.status, res.data)
+                let catFactsArr = [];
+                catFactsArr = res.data;
+                addFacts(catFactsArr);
+            });
+
+    };
+
+    function addFacts(arr) {
+        let list = document.getElementById("cat-facts-list");
+        arr.forEach(fact => {
+            //console.log(fact.text);
+            const newItem = document.createElement("li");
+            newItem.appendChild(document.createTextNode(fact.text));
+            list.appendChild(newItem);
+        });
+    };
+
+
+
+
+
+</script>
+
+</html>

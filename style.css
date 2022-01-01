@@ -1,0 +1,85 @@
+.popup {
+    position: absolute;
+    right: 0;
+    width: 600px;
+    margin-right: 15px;
+    overflow: hidden;
+    animation-delay: 3s;
+    animation: 3s slide-up;
+}
+@keyframes slide-up {
+    from {
+     
+        top: 100%;
+     
+    }
+    to {
+        top: 0%;
+    
+    }
+}
+.show {
+    position: absolute;
+    right: 0;
+    margin-right: 25px;
+    width: 600px;
+    overflow: hidden;
+    
+}
+.popdown {
+    animation: 3s slide-down;
+}
+@keyframes slide-down {
+    from {
+        margin-top: 0%;
+        
+    }
+    to {
+        margin-top: 100%;
+    
+    }
+}
+
+.container {
+    width: 600px;
+    height: 700px;
+    display: flex;
+ 
+}
+
+.left-container {
+    width: 300px;
+    display: inline;
+
+}
+
+.right-container {
+    width: 300px;
+    display: inline;
+}
+
+.img {
+   width: 100%;
+    object-fit: contain;
+}
+
+.close {
+    text-align: right;
+    margin-left: auto;
+    font-size: 34em,
+}
+
+.facts {
+    text-align: left;
+    
+}
+
+.btn {
+    width: 200px;
+    height: 40px;
+    color: white;
+    background-color: black;
+    padding: 10px, 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
